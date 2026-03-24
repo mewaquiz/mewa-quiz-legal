@@ -343,9 +343,14 @@
 
   .cta-actions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 1.2rem;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .cta-actions { flex-direction: column; gap: 1.2rem; }
   }
 
   .cta-ig {
@@ -481,7 +486,7 @@
 
 <!-- WORDMARK -->
 <div class="wordmark">
-  <p class="wordmark-quote">"Una domanda, dieci risposte. Scopri  di calcio italiano."</p>
+  <p class="wordmark-quote">"Una domanda, dieci risposte. Scopri quanto sai di calcio italiano."</p>
   <p class="wordmark-sub">Semplice · Appassionante · Gratuito</p>
 </div>
 
