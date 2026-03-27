@@ -328,7 +328,7 @@
   .value-item p { font-family: 'Montserrat Alternates', sans-serif; font-size: .88rem; opacity: .75; }
 
   /* CONTACT */
-  .contact { background: linear-gradient(180deg, var(--mahogany) 0%, var(--orange-peel) 100%); text-align: center; }
+  .contact { background: linear-gradient(180deg, var(--mahogany) 0%, var(--orange-peel) 100%); text-align: center; padding-bottom: 1rem; }
   .contact .section-label { color: var(--peach); }
   .contact .section-title { color: #fff; }
   .contact-sub { font-family: 'Montserrat Alternates', sans-serif; font-size: 1.05rem; line-height: 1.8; color: rgba(255,255,255,.8); font-weight: 300; margin-bottom: 2rem; }
@@ -428,15 +428,31 @@
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .back-to-top { display: flex; }
-    .hero { grid-template-columns: 1fr; text-align: center; padding-top: 7rem; gap: 2.5rem; }
-    .hero-subtitle { max-width: 100%; }
+
+    /* Hero */
+    .hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding-top: 5.5rem;
+      padding-bottom: 3rem;
+      gap: 2rem;
+      min-height: auto;
+    }
+    .hero-title { font-size: clamp(2rem, 10vw, 3rem); }
+    .hero-subtitle { max-width: 100%; font-size: .95rem; margin-bottom: 1.8rem; }
     .hero-badge { margin-left: 0; margin-top: .5rem; justify-content: center; }
     .hero-actions { display: flex; flex-direction: column; align-items: center; gap: .8rem; }
+
+    /* Carousel */
+    .hero-visual { gap: 1rem; }
+    .carousel-wrapper { width: 220px; height: 400px; }
+    .carousel-slide { width: 180px; }
+    .carousel-slide.prev { transform: translateX(calc(-50% - 20px)) scale(0.91) rotate(-5deg); }
+    .carousel-slide.next { transform: translateX(calc(-50% + 20px)) scale(0.91) rotate(5deg); }
+
     .why-grid, .logo-section, .story-body { grid-template-columns: 1fr; }
     .screens-grid { grid-template-columns: 1fr 1fr; }
     .nav-links { display: none; }
-    .carousel-wrapper { width: 240px; height: 450px; }
-    .carousel-slide { width: 200px; }
   }
 
   @media (max-width: 600px) {
@@ -572,7 +588,7 @@
   <p class="section-label">Contatti</p>
   <h2 class="section-title">Scrivici.</h2>
   <p class="contact-sub">Per collaborazioni, segnalazioni o semplicemente per dirci la tua — siamo qui.</p>
-  <a href="mailto:mewaquiz@gmail.com" class="contact-email">mewaquiz@gmail.com</a>
+  <a href="/cdn-cgi/l/email-protection#c8a5adbfa9b9bda1b288afa5a9a1a4e6aba7a5" class="contact-email"><span class="__cf_email__" data-cfemail="e68b83918797938f9ca6818b878f8ac885898b">[email&#160;protected]</span></a>
 </section>
 
 <!-- CTA -->
@@ -602,7 +618,7 @@
   <a href="https://mewaquiz.github.io/mewa-quiz-legal/terms.html">Termini di Servizio</a>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── CAROUSEL ──
   const captions = [
     'Ricompense giornaliere — torna ogni giorno',
@@ -644,13 +660,4 @@
     });
   });
 
-  setInterval(nextSlide, 3500);
-
-  // ── BACK TO TOP ──
-  const btn = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    btn.classList.toggle('visible', window.scrollY > 400);
-  });
-</script>
-</body>
-</html>
+  setInter
