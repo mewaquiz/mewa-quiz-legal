@@ -231,7 +231,7 @@
   .contact-email-cta {
     display: inline-block; font-family: 'Montserrat Alternates', sans-serif;
     font-size: 1.2rem; font-weight: 700; color: #fff; text-decoration: none;
-    color: #fff; border-bottom: 2px solid rgba(255,255,255,.5); padding-bottom: .2rem;
+    border-bottom: 2px solid rgba(255,255,255,.5); padding-bottom: .2rem;
     transition: opacity .2s;
   }
   .contact-email-cta:hover { opacity: .6; }
@@ -297,8 +297,18 @@
     .carousel-slide.next { transform: translateX(calc(-50% + 20px)) scale(0.91) rotate(5deg); }
     .why-grid, .logo-section, .story-body { grid-template-columns: 1fr; }
     .nav-links { display: none; }
-    .cta-grid { grid-template-columns: 1fr; gap: 2.5rem; display: flex; flex-direction: column-reverse; }
-    .cta-divider { width: 100%; height: 2px; align-self: auto; background: rgba(255,255,255,.4); }
+
+    /* FIX LAYOUT CTA: Scarica prima, Contatti dopo — senza invertire */
+    .cta-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    /* Ordine visivo: scarica (order:1), divider (order:2), contatti (order:3) */
+    .cta-col-download { order: 1; }
+    .cta-divider       { order: 2; width: 100%; height: 2px; align-self: auto; background: rgba(255,255,255,.4); }
+    .cta-col-contact   { order: 3; }
+
     .cta-col { align-items: center; text-align: center; }
     .cta-bottom { background: linear-gradient(180deg, var(--mahogany) 0%, var(--orange-peel) 100%); }
     .cta-bottom h2 { color: #fff; }
@@ -425,7 +435,8 @@
 
 <section class="cta-bottom" id="download">
   <div class="cta-grid">
-    <div class="cta-col">
+    <!-- SCARICA — primo nel DOM e nel layout mobile -->
+    <div class="cta-col cta-col-download">
       <p class="cta-label">Scarica</p>
       <h2>Quanto sai davvero?</h2>
       <p>Scaricalo gratis e scoprilo subito.</p>
@@ -442,12 +453,16 @@
         Seguici su LinkedIn
       </a>
     </div>
+
     <div class="cta-divider"></div>
-    <div class="cta-col" id="contatti">
+
+    <!-- CONTATTI — secondo nel DOM -->
+    <div class="cta-col cta-col-contact" id="contatti">
       <p class="cta-label">Contatti</p>
       <h2>Scrivici.</h2>
       <p>Per collaborazioni, segnalazioni o semplicemente per dirci la tua — siamo qui.</p>
-      <a href="/cdn-cgi/l/email-protection#b1dcd4c6d0c0c4d8cbf1d6dcd0d8dd9fd2dedc" class="contact-email-cta"><span class="__cf_email__" data-cfemail="543931233525213d2e143339353d387a373b39">[email&#160;protected]</span></a>
+      <!-- Email costruita via JS per evitare la protezione di Cloudflare/GitHub Pages -->
+      <a id="email-link" href="#" class="contact-email-cta">mewaquiz@gmail.com</a>
     </div>
   </div>
 </section>
@@ -460,7 +475,22 @@
   <a href="https://mewaquiz.github.io/mewa-quiz-legal/terms.html">Termini di Servizio</a>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+  /* ── EMAIL ANTI-SCRAPING ──────────────────────────────────────────────
+     L'indirizzo viene assemblato a runtime: nessun crawler/CDN lo vede
+     nel sorgente come stringa leggibile.
+  ──────────────────────────────────────────────────────────────────── */
+  (function() {
+    var u = 'mewaquiz';
+    var d = 'gmail.com';
+    var el = document.getElementById('email-link');
+    if (el) {
+      el.href = 'mailto:' + u + '@' + d;
+      el.textContent = u + '@' + d;
+    }
+  })();
+
+  /* ── CAROUSEL ────────────────────────────────────────────────────── */
   const captions = [
     'Ricompense giornaliere — torna ogni giorno',
     '10 slot, 10 nomi da trovare. Nessun aiuto.',
@@ -497,4 +527,15 @@
   document.querySelectorAll('.carousel-slide').forEach(el => {
     el.addEventListener('click', () => {
       if (el.classList.contains('next')) nextSlide();
-      else if (el.classList.contains('prev')) prevSli
+      else if (el.classList.contains('prev')) prevSlide();
+    });
+  });
+
+  /* ── BACK TO TOP ─────────────────────────────────────────────────── */
+  const btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+</script>
+</body>
+</html>
