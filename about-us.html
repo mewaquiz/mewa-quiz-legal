@@ -374,6 +374,16 @@
     flex-wrap: wrap; gap: 1rem;
   }
   footer span { color: var(--orange-peel); }
+  footer a {
+    color: var(--dun);
+    text-decoration: none;
+    opacity: .65;
+    transition: opacity .2s;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: .82rem;
+  }
+  footer a:hover { opacity: 1; }
+  .footer-sep { opacity: .35; }
 
   .ig-mobile-banner { display: none; }
 
@@ -561,6 +571,10 @@
 <!-- FOOTER -->
 <footer>
   <p>© 2025 <span>MEWA Quiz</span> · Fatto con ⚽ e passione</p>
+  <span class="footer-sep">·</span>
+  <a href="https://mewaquiz.github.io/mewa-quiz-legal/privacy.html">Privacy Policy</a>
+  <span class="footer-sep">·</span>
+  <a href="https://mewaquiz.github.io/mewa-quiz-legal/terms.html">Termini di Servizio</a>
 </footer>
 
 <script>
