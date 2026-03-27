@@ -298,6 +298,9 @@
     .why-grid, .logo-section, .story-body { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .cta-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cta-col:first-child { order: 2; }
+    .cta-divider { order: 1; }
+    .cta-col:last-child { order: 0; }
     .cta-divider { width: 100%; height: 2px; align-self: auto; background: rgba(255,255,255,.4); }
     .cta-col { align-items: center; text-align: center; }
     .cta-bottom { background: linear-gradient(180deg, var(--mahogany) 0%, var(--orange-peel) 100%); }
@@ -447,7 +450,7 @@
       <p class="cta-label">Contatti</p>
       <h2>Scrivici.</h2>
       <p>Per collaborazioni, segnalazioni o semplicemente per dirci la tua — siamo qui.</p>
-      <a href="mailto:mewaquiz@gmail.com" class="contact-email-cta">mewaquiz@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#b1dcd4c6d0c0c4d8cbf1d6dcd0d8dd9fd2dedc" class="contact-email-cta"><span class="__cf_email__" data-cfemail="543931233525213d2e143339353d387a373b39">[email&#160;protected]</span></a>
     </div>
   </div>
 </section>
@@ -460,7 +463,7 @@
   <a href="https://mewaquiz.github.io/mewa-quiz-legal/terms.html">Termini di Servizio</a>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const captions = [
     'Ricompense giornaliere — torna ogni giorno',
     '10 slot, 10 nomi da trovare. Nessun aiuto.',
@@ -497,16 +500,4 @@
   document.querySelectorAll('.carousel-slide').forEach(el => {
     el.addEventListener('click', () => {
       if (el.classList.contains('next')) nextSlide();
-      else if (el.classList.contains('prev')) prevSlide();
-    });
-  });
-
-  setInterval(nextSlide, 3500);
-
-  const btn = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    btn.classList.toggle('visible', window.scrollY > 400);
-  });
-</script>
-</body>
-</html>
+      else if (el.classList.contains('prev')) prevSli
